@@ -4,32 +4,43 @@ export interface Props {
 }
 
 const { title } = Astro.props;
+const description = "A type foundry specializeing in programming fonts"
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<title>{title}</title>
+		<meta name="description" content={description}>
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL('/og-image.png', Astro.url)} />
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL('/og-image.png', Astro.url)} />
 	</head>
-	<body>
+	<body class="bg-black text-gray-50">
 		<slot />
 	</body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	@font-face {
+		font-family: '0xProto';
+		src: url(/0xProto-Regular.woff2);
 	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
+
+	body {
+		font-family: '0xProto', system-ui, sans-serif;
+		line-height: 1.5;
+		font-size: calc(1rem + .25vw);
 	}
 </style>
