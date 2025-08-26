@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config';
 
-import tailwind from "@astrojs/tailwind";
+import tailwind from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://0xtype.dev',
-  integrations: [tailwind()]
+  vite: {
+    plugins: [tailwind()],
+  },
 });
